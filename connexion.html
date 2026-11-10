@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion L'HUMAIN FC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>L'HUMAIN FC</h1>
+    <h2>Connexion</h2>
+
+    <div class="connexion">
+
+        <input type="text" id="pseudo" placeholder="Ton pseudo">
+
+        <br><br>
+
+        <input type="password" id="mdp" placeholder="Ton mot de passe">
+
+        <br><br>
+
+        <button onclick="connexion()">Se connecter</button>
+
+    </div>
+
+    <script>
+        function connexion() {
+
+            let pseudo = document.getElementById("pseudo").value;
+
+            let mdp = document.getElementById("mdp").value;
+
+            if (pseudo == "" || mdp == "") {
+
+                alert("Remplis tous les champs !");
+
+            } else {
+
+                localStorage.setItem("pseudo", pseudo);
+
+                window.location.href = "boutique.html";
+
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
