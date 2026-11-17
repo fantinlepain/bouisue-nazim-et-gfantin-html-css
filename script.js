@@ -1,119 +1,107 @@
-// Récupérer le pseudo
-let pseudo = localStorage.getItem("pseudo");
 
-// Vérifier la connexion
-if (pseudo == null) {
-
-    window.location.href = "connexion.html";
-
-} else {
-
-    document.getElementById("pseudo-display").innerHTML = pseudo;
-
-}
-
-
-// Points du joueur
+let panier = [];
 let points = 150;
 
-
-// Tableau du panier
-let panier = [];
-
-
-// Afficher les points
-document.getElementById("points-display").innerHTML = points;
-
-
 // Ajouter une carte
-function ajouterPanier(id, nom, prix) {
+function ajouterPanier(id) {
 
-    let carte = {
+    let cartes = document.querySelectorAll(".boutique .carte");
 
-        id: id,
-        nom: nom,
-        prix: prix
+    let carte = cartes[id].cloneNode(true);
 
+    // Enlever le bouton ajouter
+    carte.querySelector("button").remove();
+
+    // Créer le bouton supprimer
+    let bouton = document.createElement("button");
+
+    bouton.textContent = "Supprimer";
+
+    bouton.onclick = function() {
+        panier.splice(panier.indexOf(carte), 1);
+        afficherPanier();
     };
+
+    carte.appendChild(bouton);
 
     panier.push(carte);
 
-    alert(nom + " ajouté au panier !");
-
     afficherPanier();
-
 }
 
 
 // Afficher le panier
 function afficherPanier() {
 
-    let contenu = "";
+    let panierHTML = document.getElementById("panier");
 
-    let total = 0;
-
-    for (let i = 0; i < panier.length; i++) {
-
-        contenu += "<div class='carte'>";
-
-        contenu += "<h3>" + panier[i].nom + "</h3>";
-
-        contenu += "<p>Prix : " + panier[i].prix + " points</p>";
-
-        contenu += "<button onclick='retirerPanier(" + i + ")'>Retirer</button>";
-
-        contenu += "</div>";
-
-        total = total + panier[i].prix;
-
-    }
+    panierHTML.innerHTML = "";
 
     if (panier.length == 0) {
 
-        contenu = "<p>Ton panier est vide.</p>";
+        panierHTML.innerHTML = "Ton panier est vide.";
+
+    } else {
+
+        panier.forEach(function(carte) {
+            panierHTML.appendChild(carte);
+        });
 
     }
 
-    document.getElementById("panier").innerHTML = contenu;
-
-    document.getElementById("total").innerHTML = total;
-
+    calculerTotal();
 }
 
 
+// Calculer le prix
+function calculerTotal() {
+
+    let total = 0;
+
+    panier.forEach(function(carte) {
+
+        let prix = carte.querySelectorAll("p");
+
+        for (let i = 0; i < prix.length; i++) {
+
+            if (prix[i].textContent.includes("Prix")) {
+
+                total = total + Number(prix[i].textContent.match(/\d+/)[0]);
+
+            }
+
+        }
+
+    });
+
+    document.getElementById("total").innerHTML = total;
+}
 
 
 // Valider le panier
 function validerPanier() {
 
-    let total = 0;
-
-    for (let i = 0; i < panier.length; i++) {
-
-        total = total + panier[i].prix;
-
-    }
+    let total = Number(document.getElementById("total").innerHTML);
 
     if (panier.length == 0) {
 
         alert("Ton panier est vide !");
 
-    } else if (points >= total) {
+    } else if (total > points) {
+
+        alert("Tu n'as pas assez de points !");
+
+    } else {
 
         points = points - total;
 
         document.getElementById("points-display").innerHTML = points;
 
-        alert("Commande validée !");
-
         panier = [];
 
         afficherPanier();
 
-    } else {
-
-        alert("Tu n'as pas assez de points !");
-
+        alert("Achat réussi !");
     }
 
 }
@@ -122,12 +110,6 @@ function validerPanier() {
 // Déconnexion
 function deconnexion() {
 
-    localStorage.removeItem("pseudo");
-
     window.location.href = "connexion.html";
 
 }
-
-
-// Afficher le panier au démarrage
-afficherPanier();
