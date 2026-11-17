@@ -1,12 +1,15 @@
-
 * {
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background-color: #cae9c737;
-    color: #000000;
+    background-image: url("image/f449e903-31ff-4d98-a3d8-89faf8d9157c.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
     text-align: center;
     margin: 0;
     padding: 25px;
@@ -14,7 +17,7 @@ body {
 
 h1 {
     font-family: Georgia, serif;
-    background-color: #42b294;
+    background-color: #165b49;
     color: white;
     padding: 30px;
     margin: -25px -25px 30px -25px;
@@ -24,28 +27,81 @@ h1 {
 
 h2 {
     font-family: 'Trebuchet MS', sans-serif;
-    color: #174d32;
+    color: #000000;
     font-weight: bold;
+}
+
+.info-box {
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(8px);
+    border: 2px solid #000000;
+    border-radius: 15px;
+    padding: 25px;
+    max-width: 420px;
+    margin: 0 auto 35px auto;
+    
+}
+
+.info-box h2 {
+    color: #000000;
+    margin-top: 0;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-box p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.points-container {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.points-container p {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #000000;
+}
+
+#points-display {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0c0a03;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.titre-section {
+    color: #000000;
+    font-size: 28px;
 }
 
 .boutique {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    justify-content: center;
     gap: 20px;
     padding: 20px;
     margin-top: 30px;
 }
 
 .carte {
-    background-color: white;
     border: 2px solid rgba(161, 203, 184, 0.882);
     border-radius: 12px;
     padding: 15px;
-    width: 100%;
     text-align: center;
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carte:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .carte h2 {
@@ -65,9 +121,34 @@ h2 {
     margin: 10px auto;
 }
 
+.carte.commun {
+    background: linear-gradient(135deg, #a8e6a370, #55c95b, #2e9d4f9a);
+    border: 2px solid #baffb8;
+}
+
+.carte.rare {
+    background: linear-gradient(135deg, #a5e5ff88, #42a5f5, #1565c080);
+    border: 2px solid #90dfff;
+}
+
+.carte.epique {
+    background: linear-gradient(135deg, #d7aaff60, #a855e8, #7125b854);
+    border: 2px solid #e4c3ff;
+}
+
+.carte.legendaire {
+    background: linear-gradient(135deg, #fff17687, #ffca28, #c58a005e);
+    border: 2px solid #ffe680;
+}
+
+.carte.secret {
+    background: linear-gradient(135deg, #1111119d, #555555, #eeeeeea2);
+    border: 2px solid #ffffff;
+}
+
 button {
     font-family: 'Trebuchet MS', sans-serif;
-    background-color: #246b45;
+    background-color: #246b45be;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -75,32 +156,34 @@ button {
     cursor: pointer;
     font-weight: bold;
     margin: 5px;
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #42b294;
-    color: white;
+    background-color: #174d32;
+    transform: scale(1.04);
 }
 
-/* PANIER */
+.carte button {
+    margin-top: 10px;
+}
+
+.connexion {
+    background-color: white;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 320px;
+    max-width: 100%;
+    margin: 40px auto;
+    
+}
 
 #panier {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 240px));
+    display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-#panier .carte {
-    width: 100%;
-    margin: 0;
-}
-
-#panier .carte img {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 #total {
@@ -116,10 +199,7 @@ hr {
     border-top: 1px solid #d5dfd7;
 }
 
-/* TELEPHONE */
-
 @media screen and (max-width: 500px) {
-
     body {
         padding: 10px;
     }
@@ -140,7 +220,7 @@ hr {
         margin: auto;
     }
 
-    #panier {
-        grid-template-columns: 1fr;
+    .connexion {
+        width: 90%;
     }
 }

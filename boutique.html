@@ -1,13 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Boutique L'HUMAIN FC</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,94 +12,80 @@
 
     <h1>Boutique L'HUMAIN FC</h1>
 
-    <h2>Boutique de cartes</h2>
+    <div class="info-box">
+        <h2>Boutique de cartes</h2>
+        <p>Bienvenue <span id="pseudo-display"></span> !</p>
+        <div class="points-container">
+            <p>Vos points :</p>
+            <span id="points-display">150</span>
+        </div>
+    </div>
 
-    <p>Bienvenue <span id="pseudo-display"></span> !</p>
-
-    <p>Vos points :</p>
-    <span id="points-display">150</span>
-
-    <h2>Les cartes</h2>
+    <h2 class="titre-section">Les cartes</h2>
 
     <div class="boutique">
 
-        <!-- CARTE 1 -->
-        <div class="carte">
+        <div class="carte commun">
             <h2>L'HUMAIN FC</h2>
-
             <img src="image/channels4_profile.jpg" alt="L'HUMAIN FC">
-
             <p>Attaque : canceled de youtube</p>
             <p>PV : 100</p>
             <p>ATK : 60</p>
             <p>Rareté : Commun</p>
             <p>Prix : 20 points</p>
-
-            <button onclick="ajouterPanier(0)">
+            <button onclick="ajouterPanier(0, 'L’HUMAIN FC', 20)">
                 Ajouter au panier
             </button>
         </div>
 
-        <!-- CARTE 2 -->
-        <div class="carte">
+        <div class="carte secret">
             <h2>Fantahjudah</h2>
-
+            <img src="image/ddddd.jpg" alt="Redah">
             <p>Attaque : Netaniatorahgog</p>
             <p>PV : 300</p>
             <p>ATK : 120</p>
             <p>Rareté : Secret</p>
             <p>Prix : 100 points</p>
-
-            <button onclick="ajouterPanier(1)">
+            <button onclick="ajouterPanier(1, 'Fantahjudah', 100)">
                 Ajouter au panier
             </button>
         </div>
 
-        <!-- CARTE 3 -->
-        <div class="carte">
+        <div class="carte commun">
             <h2>anabelle.exe</h2>
-
             <img src="image/annabelle-2-1-ransomware-virus_en.jpg.webp" alt="anabelle.exe">
-
             <p>Attaque : victork touche un ordi</p>
             <p>PV : 90</p>
             <p>ATK : 60</p>
             <p>Rareté : Commun</p>
             <p>Prix : 20 points</p>
-
-            <button onclick="ajouterPanier(2)">
+            <button onclick="ajouterPanier(2, 'anabelle.exe', 20)">
                 Ajouter au panier
             </button>
         </div>
 
-        <!-- CARTE 4 -->
-        <div class="carte">
+        <div class="carte epique">
             <h2>Redah</h2>
-
             <img src="image/images.jpg" alt="Redah">
-
             <p>Attaque : observaation en sapin</p>
             <p>PV : 230</p>
             <p>ATK : 30</p>
             <p>Rareté : Épique</p>
             <p>Prix : 60 points</p>
-
-            <button onclick="ajouterPanier(3)">
+            <button onclick="ajouterPanier(3, 'Redah', 60)">
                 Ajouter au panier
             </button>
         </div>
 
-        <!-- CARTE 5 -->
-        <div class="carte">
+        <div class="carte legendaire">
             <h2>Nazim</h2>
-
+            <img src="image/IMG_6847.jpeg" alt="Redah">
             <p>Attaque : foli vocale</p>
             <p>PV : 230</p>
             <p>ATK : 110</p>
             <p>Rareté : Légendaire</p>
             <p>Prix : 80 points</p>
-
-            <button onclick="ajouterPanier(4)">
+            <button onclick="ajouterPanier(4, 'Nazim', 80)">
                 Ajouter au panier
             </button>
         </div>
@@ -111,11 +94,9 @@
 
     <hr>
 
-    <!-- PANIER -->
-
     <h2>Mon panier</h2>
 
-    <div id="panier" class="boutique">
+    <div id="panier">
         Ton panier est vide.
     </div>
 
